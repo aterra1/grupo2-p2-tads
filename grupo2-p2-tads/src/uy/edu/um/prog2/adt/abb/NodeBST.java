@@ -1,5 +1,6 @@
 package uy.edu.um.prog2.adt.abb;
 
+import uy.edu.um.prog2.adt.queue.*;
 
 public class NodeBST <K extends Comparable<K>, T> {
 	K key;
@@ -153,6 +154,35 @@ public class NodeBST <K extends Comparable<K>, T> {
 
 			return this;
 		}
+	public MyQueue<K> inOrdenNode(MyQueue<K> list){
+		if(getLeftChild()!=null) 
+			getLeftChild().inOrdenNode(list);
+		else
+			list.enqueue(this.getKey());
+		if(getRightChild()!=null) {
+			list.enqueue(this.getKey());
+			getRightChild().inOrdenNode(list);
+		}
+		return list;
+	}
+	
+	public MyQueue<K> preOrdenNode(MyQueue<K> list){
+		list.enqueue(this.getKey());
+		if(getLeftChild()!=null)
+			getLeftChild().preOrdenNode(list);
+		if(getRightChild()!=null)
+			getRightChild().preOrdenNode(list);
+		return list;
+	}
+	
+	public MyQueue<K> postOrdenNode(MyQueue<K> list){
+		if(getLeftChild()!=null)
+			getLeftChild().postOrdenNode(list);
+		if(getRightChild()!=null)
+			getRightChild().postOrdenNode(list);
+		list.enqueue(this.getKey());
+		return list;
+	}
 
 	}
 

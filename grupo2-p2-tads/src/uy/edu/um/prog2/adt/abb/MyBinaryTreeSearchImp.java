@@ -1,5 +1,7 @@
 package uy.edu.um.prog2.adt.abb;
 
+import uy.edu.um.prog2.adt.queue.*;
+
 public class MyBinaryTreeSearchImp<K extends Comparable<K>, T> implements MyBinarySearchTree {
 	private NodeBST raiz;
 	
@@ -22,6 +24,21 @@ public class MyBinaryTreeSearchImp<K extends Comparable<K>, T> implements MyBina
 	@Override
 	public void delete(Comparable key) {
 		raiz.deleteNode(key);
+	}
+	public MyQueue<K> inOrden(){
+		MyQueue<K> list= new MyQueueImp<K>();
+		return raiz.inOrdenNode(list);	
+	}
+	
+	@Override
+	public MyQueue<K> preOrden() {
+		MyQueue<K> list = new MyQueueImp<K>();
+		return raiz.preOrdenNode(list);
+	}
+	@Override
+	public MyQueue<K> postOrden() {
+		MyQueue<K> list = new MyQueueImp<K>();
+		return raiz.postOrdenNode(list);
 	}
 
 }
