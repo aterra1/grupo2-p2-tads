@@ -1,13 +1,10 @@
-package uy.edu.um.prog2.adt.linkedlist;
+package uy.edu.um.prog2.tad.linkedlist;
 
 public interface LinkedList<T> {
-
-	public void addElement(Node oElement);
 	
+	public void addElement(Node<T> oElement);
 	public boolean checkEmpty();
-	
-	public void deleteElement(int nPosition);
-	
 	public T getElement(int nPosition);
+	public void deleteElement(int nPosition);
 
 }

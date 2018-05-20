@@ -1,35 +1,32 @@
-package uy.edu.um.prog2.adt.linkedlist;
+package uy.edu.um.prog2.tad.linkedlist;
 
 public class Node<T> {
-
+	
 	private T value;
-	private Node next;
-	private Node previous;
+	private Node<T> next;
+	private Node<T> previous;
 	
-	public Node(T nValue) {
-		value = nValue;
+	public Node(T value){
+		this.value = value;
 	}
-	
+
 	public T getValue() {
 		return value;
 	}
 	public void setValue(T value) {
 		this.value = value;
 	}
-	public Node getNext() {
+	public Node<T> getNext() {
 		return next;
 	}
-	public void setNext(Node next) {
+	public void setNext(Node<T> next) {
 		this.next = next;
 	}
-	public Node getPrevious() {
+	public Node<T> getPrevious() {
 		return previous;
 	}
-	public void setPrevious(Node previous) {
+	public void setPrevious(Node<T> previous) {
 		this.previous = previous;
 	}
-	
 
-	
-	
 }

@@ -1,89 +1,88 @@
-package uy.edu.um.prog2.adt.linkedlist;
+package uy.edu.um.prog2.tad.linkedlist;
 
-public class MyLinkedList<T> implements LinkedList {
+public class MyLinkedList<T> implements LinkedList<T>{
 
-	private Node head;
-	private Node tail;
+	private Node<T> head;
 	
-	public MyLinkedList(Node head) {
+	public MyLinkedList(Node<T> head) {
+		
 		this.head = head;
-	
 	}
 	
+	public void addElement(Node<T> oElement) {
 	
-	public void addElement(Node oElement) {
 		if(head == null) {
 			head = oElement;
-			
-		}
-		else {
-			Node scope = head;
-			Node mira = head;
-			int x = 0;
-			while(scope.getNext() != null) {
+		}else{
+			Node<T> scope = head;
+			Node<T> target = head;
+			int savePrev = 0;
+			while (scope.getNext() != null) {
+				
 				scope = scope.getNext();
-				x++;
+				savePrev++;
 			}
 			scope.setNext(oElement);
-			
-			for(int i = 0; i<x-1; i++) {
-				mira = mira.getNext();
+			for(int i=0; i<savePrev-1; i++) {
+				
+				target = target.getNext();
 			}
-			scope.setPrevious(mira);
-			tail = oElement;
+			scope.setPrevious(target);
 		}
 	}
-		
-		public boolean checkEmpty() {
-			boolean check;
-			if(head == null)
-				check = true;
-			else
-				check = false;
-			return check;
-		}
-		
-		public T getElement(int nPosicion) {
-			T dev = null;
-			if(checkEmpty()== false) {
-				Node scope = head;
-				for(int x = 0; x < nPosicion; x++) {
-					scope = scope.getNext();
-					
-				}
-				dev = (T) scope.getValue();
-				
-				
-			}
-			return dev;
-		}
-		
-		public void deleteElement(int nPosition){
-			Node scope = head;
-			Node newNext;
-			Node newPrev;
-			
-			if(nPosition == 0 ) {
-				head = head.getNext();
-				
-			}
-			else {
-				for(int x = 0; x < nPosition; x++) { 
-					scope = scope.getNext();
-				}
-				newNext = scope.getNext();
-				newPrev = scope.getPrevious();
-				newNext.setPrevious(newPrev);
-				newPrev.setNext(newNext);
-				scope.setNext(null);
-				scope.setPrevious(null);
-				
-				
-			}
-			
-		}
-	
-		
-}
-	
 
+	
+	public boolean checkEmpty() {
+
+		boolean revision;
+		if(head == null) {
+			revision = true;
+		}else {
+			revision = false;
+		}
+		return revision;
+	}
+
+	
+	public T getElement(int nPosition) {
+
+		T searched = null;
+		if(checkEmpty() == false) {
+			
+			Node<T> scope = head;
+			for(int x=0; x < nPosition; x++) {
+				
+				scope= scope.getNext();
+			}
+			searched = (T) scope.getValue();
+		}
+		return searched;
+	}
+
+	
+	public void deleteElement(int nPosition) {
+		
+		Node<T> scope = head;
+		Node<T> newNext;
+		Node<T> newPrev;
+		
+		if(nPosition == 0) {
+			
+			head = head.getNext();
+		}else {
+			
+			for(int x=0; x < nPosition; x++) {
+				
+				scope = scope.getNext();
+			}
+			newNext = scope.getNext();
+			newPrev = scope.getPrevious();
+			newNext.setPrevious(newPrev);
+			newPrev.setNext(newNext);
+			scope.setNext(null);
+			scope.setPrevious(null);
+		}
+		
+	}
+
+}
