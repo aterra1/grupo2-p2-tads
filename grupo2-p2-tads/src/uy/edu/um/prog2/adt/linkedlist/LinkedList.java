@@ -1,4 +1,4 @@
-package uy.edu.um.prog2.tad.linkedlist;
+package uy.edu.um.prog2.adt.linkedlist;
 
 public interface LinkedList<T> {
 	
