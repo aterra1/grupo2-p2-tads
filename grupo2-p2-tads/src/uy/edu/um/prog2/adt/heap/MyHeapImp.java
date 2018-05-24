@@ -62,52 +62,72 @@ public class MyHeapImp<K extends Comparable <K>, T> implements MyHeap<K,T> {
 		HeapNode<K,T> hijo2= list[2*pos+2];
 		HeapNode<K,T> padre= list[pos];
 		if(max == true) {
-			if(hijo1!=null) {
-				if(padre.getKey().compareTo(hijo1.getKey())==-1) {
-					list[2*pos+1] = padre;
-					list[pos] = hijo1;
-					list = orderDelete(list, 2*pos+1);
-				}
-				else if(hijo2!=null) {
-					if(padre.getKey().compareTo(hijo2.getKey())==-1) {
-						list[2*pos+2] = padre;
+			if(hijo1!=null && hijo2!=null){
+			    if(padre.getKey().compareTo(hijo1.getKey())<0 && padre.getKey().compareTo(hijo2.getKey())>0){
+			     		list[2*pos+1] = padre;
+						list[pos] = hijo1;
+						list = orderDelete(list, 2*pos+1);
+			     }
+			    
+			    else if(padre.getKey().compareTo(hijo1.getKey())==-1 && padre.getKey().compareTo(hijo2.getKey())==-1) {
+			    	if(hijo1.getKey().compareTo(hijo2.getKey())==-1) {
+			    		list[2*pos+2]=padre;
+			    		list[pos] = hijo2;
+			    		list = orderDelete(list, 2*pos+2);
+			    	}
+			    	else {
+			    		list[2*pos+1]=padre;
+			    		list[pos] = hijo1;
+			    		list = orderDelete(list, 2*pos+1);
+			    	}
+			    }
+			    
+			     else if(padre.getKey().compareTo(hijo2.getKey())==-1){
+			     		list[2*pos+2] = padre;
 						list[pos] = hijo2;
-						list = orderDelete(list, 2*pos+2);
-					}
-				}
-			}
+						list = orderDelete(list, 2*pos+1);
+			     }	
+			  }else if(hijo2==null && hijo1!=null){
+			  		if(padre.getKey().compareTo(hijo1.getKey())==-1){
+			     		list[2*pos+1] = padre;
+						list[pos] = hijo1;
+			     }
+			  }
 		}
 		else {
-			if(hijo1!=null) {
-				if(padre.getKey().compareTo(hijo1.getKey())== 1) {
-					list[2*pos+1] = padre;
-					list[pos] = hijo1;
-					list = orderDelete(list, 2*pos+1);
-				}
-				else if(hijo2!=null) {
-					if(padre.getKey().compareTo(hijo2.getKey())== 1) {
-						list[2*pos+2] = padre;
-						list[pos] = hijo2;
-						list = orderDelete(list, 2*pos+2);
-					}
-				}
-			}
+			if(hijo1!=null && hijo2!=null){
+				    if(padre.getKey().compareTo(hijo1.getKey())>0 && padre.getKey().compareTo(hijo2.getKey())<0){
+				     		list[2*pos+1] = padre;
+							list[pos] = hijo1;
+							list = orderDelete(list, 2*pos+1);
+				     }
+				   
+				    else if(padre.getKey().compareTo(hijo1.getKey())==1 && padre.getKey().compareTo(hijo2.getKey())==1) {
+				    	if(hijo1.getKey().compareTo(hijo2.getKey())==1) {
+				    		list[2*pos+2]=padre;
+				    		list[pos] = hijo2;
+				    		list = orderDelete(list, 2*pos+2);
+				    	}
+				    	else {
+				    		list[2*pos+1]=padre;
+				    		list[pos] = hijo1;
+				    		list = orderDelete(list, 2*pos+1);
+				    	}
+				    }
+				    
+				     else if(padre.getKey().compareTo(hijo2.getKey())==1){
+				     		list[2*pos+2] = padre;
+							list[pos] = hijo2;
+							list = orderDelete(list, 2*pos+1);
+				     }	
+				  }else if(hijo2==null && hijo1!=null){
+				  		if(padre.getKey().compareTo(hijo1.getKey())==1){
+				     		list[2*pos+1] = padre;
+							list[pos] = hijo1;
+				     }
+				  }
 		}
 		}
-		/*
-		 * if(hijo1!=null && hijo2!=null){
-		 *    if(padre.getKey().compareTo(hijo1.getKey())==1 && padre.getKey().compareTo(hijo2.getKey())<1){
-		 *    		list[2*pos+1] = padre;
-					list[pos] = hijo1;
-					list = orderDelete(list, 2*pos+1);
-		 *    }
-		 *    else if(padre.getKey().compareTo(hijo2.getKey()==1)){
-		 *    		list[2*pos+2] = padre;
-					list[pos] = hijo2;
-					list = orderDelete(list, 2*pos+1);
-		 *    }	
-		 * }*/
-		
 		return list;
 	}
 	
